@@ -1,0 +1,99 @@
+﻿
+<div class="naviMenu">
+	<div>
+		@if (Layout?.title == "표준")
+		{
+			<span class="material-icons" style="margin-right: 10px;">
+				calculate
+			</span>
+		}
+		else if (Layout?.title == "환율")
+		{
+			<span class="material-icons" style="margin-right: 10px;">
+				currency_exchange
+			</span>
+		}
+		else if (Layout?.title == "원가")
+		{
+			<span class="material-icons" style="margin-right: 10px;">
+				egg_alt
+			</span>
+		}
+		else if (Layout?.title == "고급")
+		{
+			<span class="material-icons" style="margin-right: 10px;">
+				engineering
+			</span>
+		}
+		else if (Layout?.title == "설정")
+		{
+			<span class="material-icons" style="margin-right: 10px;">
+				settings
+			</span>
+		}
+
+		<span>@Layout?.title</span>
+	</div>
+	<div>
+		<button class="navbar-toggler" @onclick="ToggleNavMenu">
+			<span class="material-icons icon-bulleted" style="font-size: 24px">
+				format_list_bulleted
+			</span>
+		</button>
+	</div>
+</div>
+
+@*토글되는 네비메뉴*@
+<div class="@NavMenuCssClass nav-scrollable nav-toggle" @onclick="ToggleNavMenu">
+	<nav class="flex-column">
+		<div class="nav-item">
+			<NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+				<span class="material-icons" style="margin-right: 10px;">
+					calculate
+				</span> @Layout?.standard
+			</NavLink>
+		</div>
+		<div class="nav-item">
+			<NavLink class="nav-link" href="currency">
+				<span class="material-icons" style="margin-right: 10px;">
+					currency_exchange
+				</span> @Layout?.currency
+			</NavLink>
+		</div>
+		<div class="nav-item">
+			<NavLink class="nav-link" href="cost">
+				<span class="material-icons" style="margin-right: 10px;">
+					egg_alt
+				</span> @Layout?.cost
+			</NavLink>
+		</div>
+		<div class="nav-item">
+			<NavLink class="nav-link" href="advanced">
+				<span class="material-icons" style="margin-right: 10px;">
+					engineering
+				</span> @Layout?.advanced
+			</NavLink>
+		</div>
+		<div class="nav-item">
+			<NavLink class="nav-link" href="settings">
+				<span class="material-icons" style="margin-right: 10px;">
+					settings
+				</span> @Layout?.settings
+			</NavLink>
+		</div>
+	</nav>
+</div>
+
+@code {
+	[CascadingParameter]
+	public MainLayout? Layout { get; set; }
+
+	private bool collapseNavMenu = true;
+
+	private string? NavMenuCssClass => collapseNavMenu ? "collapseMenu" : null;
+
+	private void ToggleNavMenu()
+	{
+		collapseNavMenu = !collapseNavMenu;
+	}
+}

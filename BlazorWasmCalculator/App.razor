@@ -1,0 +1,29 @@
+﻿@inject AppState State
+@inject IJSRuntime JS
+
+<CascadingValue Value="State">
+	<Router AppAssembly="@typeof(App).Assembly">
+		<Found Context="routeData">
+			<RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+			<FocusOnNavigate RouteData="@routeData" Selector="h1" />
+		</Found>
+		<NotFound>
+			<PageTitle>Not found</PageTitle>
+			<LayoutView Layout="@typeof(MainLayout)">
+				<p role="alert">Sorry, there's nothing at this address.</p>
+			</LayoutView>
+		</NotFound>
+	</Router>
+</CascadingValue>
+
+@code {
+	protected override async Task OnInitializedAsync()
+	{
+		string? savedTheme = await JS.InvokeAsync<string>("themeStorage.loadTheme");
+		if (!string.IsNullOrEmpty(savedTheme))
+		{
+			State.Theme = savedTheme;
+			await JS.InvokeVoidAsync("setTheme", State.Theme);
+		}
+	}
+}

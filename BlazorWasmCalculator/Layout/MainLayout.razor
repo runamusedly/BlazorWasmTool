@@ -1,0 +1,29 @@
+﻿@inherits LayoutComponentBase
+
+<CascadingValue Value="this">
+	<div class="page">
+		<div class="sidebar">
+			<NavMenu />
+		</div>
+		<div class="main">
+			<article>
+				@Body
+			</article>
+		</div>
+	</div>
+</CascadingValue>
+
+@code {
+	public string title { get; set; } = "표준";
+	public string standard { get; } = "표준";
+	public string currency { get; } = "환율";
+	public string cost { get; } = "원가";
+	public string advanced { get; } = "고급";
+	public string settings { get; } = "설정";
+
+	public void SetTitle(string newTitle)
+	{
+		title = newTitle;
+		StateHasChanged();
+	}
+}

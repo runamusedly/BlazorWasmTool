@@ -1,0 +1,22 @@
+﻿.theme-selector {
+    display: flex;
+    flex-direction: column;
+    height: 650px;
+    width: 100%;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+    .theme-selector label {
+        cursor: pointer;
+        font-size: 1.2rem;
+    }
+
+    .theme-selector input[type="radio"] {
+        margin-right: 1.5rem;
+    }
+
+    .theme-selector p {
+        font-size: 2rem;
+        font-weight: bold;
+    }

@@ -1,0 +1,36 @@
+﻿@page "/cost"
+
+<PageTitle>@Layout?.cost</PageTitle>
+
+<div class="calculator-body">
+    <button class="calculator-button">&percnt;</button>
+    <button class="calculator-button">&#8999;</button>
+    <button class="calculator-button">&larr;</button>
+    <button class="calculator-button">&divide;</button>
+    <button class="calculator-button">&#120829;</button>
+    <button class="calculator-button">&#120830;</button>
+    <button class="calculator-button">&#120831;</button>
+    <button class="calculator-button">&times;</button>
+    <button class="calculator-button">&#120826;</button>
+    <button class="calculator-button">&#120827;</button>
+    <button class="calculator-button">&#120828;</button>
+    <button class="calculator-button">&minus;</button>
+    <button class="calculator-button">&#120823;</button>
+    <button class="calculator-button">&#120824;</button>
+    <button class="calculator-button">&#120825;</button>
+    <button class="calculator-button">&plus;</button>
+    <button class="calculator-button">&plusmn;</button>
+    <button class="calculator-button">&#120822;</button>
+    <button class="calculator-button">&#8729;</button>
+    <button class="calculator-button">&equals;</button>
+</div>
+
+@code {
+    [CascadingParameter]
+    public MainLayout? Layout { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Layout?.SetTitle(Layout.cost);
+    }
+}

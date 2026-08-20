@@ -1,0 +1,85 @@
+﻿@page "/settings"
+@inject IJSRuntime JS
+
+<PageTitle>@Layout?.settings</PageTitle>
+<div class="theme-selector">
+	<p>Theme Mode</p>
+
+
+	<label>
+		<input type="radio" name="theme" value="theme-samsung-light"
+			   @onchange="ChangeTheme"
+			   checked="@(State?.Theme == "theme-samsung-light" ? "checked" : null)" />
+		밝은 삼성
+	</label>
+
+
+	<label>
+		<input type="radio" name="theme" value="theme-samsung-dark"
+			   @onchange="ChangeTheme"
+			   checked="@(State?.Theme == "theme-samsung-dark" ? "checked" : null)" />
+		어두운 삼성
+	</label>
+
+	<label>
+		<input type="radio" name="theme" value="theme-samsung-dark-bluetech"
+			   @onchange="ChangeTheme"
+			   checked="@(State?.Theme == "theme-samsung-dark-bluetech" ? "checked" : null)" />
+		어두운 삼성(Blue Tech)
+	</label>
+
+	<label>
+		<input type="radio" name="theme" value="theme-skhynix-light"
+			   @onchange="ChangeTheme"
+			   checked="@(State?.Theme == "theme-skhynix-light" ? "checked" : null)" />
+		밝은 SK Hynix
+	</label>
+
+	<label>
+		<input type="radio" name="theme" value="theme-skhynix-dark"
+			   @onchange="ChangeTheme"
+			   checked="@(State?.Theme == "theme-skhynix-dark" ? "checked" : null)" />
+		어두운 SK Hynix
+	</label>
+
+
+
+</div>
+
+@code {
+	[CascadingParameter]
+	public MainLayout? Layout { get; set; }
+
+	protected override void OnInitialized()
+	{
+		Layout?.SetTitle(Layout.settings);
+	}
+
+	[CascadingParameter]
+	public AppState? State { get; set; }
+
+	private async Task ChangeTheme(ChangeEventArgs e)
+	{
+		if (State is null)
+		{
+			return;
+		}
+		else
+		{
+			if (e.Value is string s && !string.IsNullOrEmpty(s))
+			{
+				State.Theme = s;
+			}
+			else
+			{
+
+			}
+
+			await JS.InvokeVoidAsync("setTheme", State.Theme);
+			await JS.InvokeVoidAsync("themeStorage.saveTheme", State.Theme);
+		}
+
+	}
+
+
+}
