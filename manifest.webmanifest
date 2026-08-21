@@ -1,6 +1,6 @@
 {
-  "name": "BlazorWasmCalculator",
-  "short_name": "BlazorWasmCalculator",
+  "name": "전자계산기",
+  "short_name": "계산기",
   "id": "./",
   "start_url": "./",
   "display": "standalone",

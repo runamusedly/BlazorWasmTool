@@ -1,12 +1,12 @@
 self.assetsManifest = {
-  "version": "hW6USqMK",
+  "version": "uo0/ykE9",
   "assets": [
     {
       "hash": "sha256-TEzV00xuU0lgX3bQX/ddKaiBZIyRaErCg1qYxKOgh3Y=",
       "url": "BlazorWasmCalculator.styles.css"
     },
     {
-      "hash": "sha256-ukpGsyMkAnwC03uB5f1LaVFb989tCW22z0I43Oml6lk=",
+      "hash": "sha256-NaVJX1o7ATqtWsPSWeSkR1/PJDCvTbB9axIGVFDV4xM=",
       "url": "_framework/BlazorWasmCalculator.wasm"
     },
     {
@@ -126,7 +126,7 @@ self.assetsManifest = {
       "url": "_framework/System.Text.RegularExpressions.wasm"
     },
     {
-      "hash": "sha256-+K+eUGliPYOt/B2y7uEM2LXIAWa8cAWKBlvaEM8c73o=",
+      "hash": "sha256-KmV1G2c8lr5151Uf9TBXaD1+p6beBI04KdcpvmflLjc=",
       "url": "_framework/blazor.boot.json"
     },
     {
@@ -190,7 +190,7 @@ self.assetsManifest = {
       "url": "js/theme.js"
     },
     {
-      "hash": "sha256-eV6CxOFjMXs6oWFKsEEJ9KoANqsMM3ZiaNLEjXtmZRo=",
+      "hash": "sha256-lufmQxp000j5YTu5rxDKSAaWLpsq310JFpyTfyDIXt0=",
       "url": "manifest.webmanifest"
     }
   ]
