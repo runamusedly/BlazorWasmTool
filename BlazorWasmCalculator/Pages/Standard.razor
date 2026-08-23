@@ -25,33 +25,33 @@
 @*버튼부*@
 <div class="calculator-body">
 	<button class="calculator-button-operator">&percnt;</button>@* % *@
-	<button class="calculator-button-clear" @onclick="Clear">
+	<button class="calculator-button-clear" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="Clear">
 		<span class="material-icons">
 			delete_forever
 		</span>
 	</button>
-	<button class="calculator-button-clear" @onclick="Backspace">
+	<button class="calculator-button-clear" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="Backspace">
 		<span class="material-icons">
 			backspace
 		</span>
 	</button>
-	<button class="calculator-button-operator" @onclick="InputOpDivide">&divide;</button>@* / *@
-	<button class="calculator-button-number" @onclick="InputNum7">&#120829;</button>@* 7 *@
-	<button class="calculator-button-number" @onclick="InputNum8">&#120830;</button>@* 8 *@
-	<button class="calculator-button-number" @onclick="InputNum9">&#120831;</button>@* 9 *@
-	<button class="calculator-button-operator" @onclick="InputOpMultiply">&times;</button>@* * *@
-	<button class="calculator-button-number" @onclick="InputNum4">&#120826;</button>@* 4 *@
-	<button class="calculator-button-number" @onclick="InputNum5">&#120827;</button>@* 5 *@
-	<button class="calculator-button-number" @onclick="InputNum6">&#120828;</button>@* 6 *@
-	<button class="calculator-button-operator" @onclick="InputOpMinus">&minus;</button>@* - *@
-	<button class="calculator-button-number" @onclick="InputNum1">&#120823;</button>@* 1 *@
-	<button class="calculator-button-number" @onclick="InputNum2">&#120824;</button>@* 2 *@
-	<button class="calculator-button-number" @onclick="InputNum3">&#120825;</button>@* 3 *@
-	<button class="calculator-button-operator" @onclick="InputOpPlus">&plus;</button>@* + *@
-	<button class="calculator-button-number" @onclick="InputNum00">&#120822;&#120822;</button>@* 00*@
-	<button class="calculator-button-number" @onclick="InputNum0">&#120822;</button>@* 0 *@
-	<button class="calculator-button-operator" @onclick="InputDecimal">&#8729;</button>@* . *@
-	<button class="calculator-button-operator" @onclick="Calculate">&equals;</button>@* = *@
+	<button class="calculator-button-operator" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputOpDivide">&divide;</button>@* / *@
+	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum7">&#120829;</button>@* 7 *@
+	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum8">&#120830;</button>@* 8 *@
+	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum9">&#120831;</button>@* 9 *@
+	<button class="calculator-button-operator" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputOpMultiply">&times;</button>@* * *@
+	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum4">&#120826;</button>@* 4 *@
+	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum5">&#120827;</button>@* 5 *@
+	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum6">&#120828;</button>@* 6 *@
+	<button class="calculator-button-operator" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputOpMinus">&minus;</button>@* - *@
+	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum1">&#120823;</button>@* 1 *@
+	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum2">&#120824;</button>@* 2 *@
+	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum3">&#120825;</button>@* 3 *@
+	<button class="calculator-button-operator" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputOpPlus">&plus;</button>@* + *@
+	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum00">&#120822;&#120822;</button>@* 00*@
+	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum0">&#120822;</button>@* 0 *@
+	<button class="calculator-button-operator" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputDecimal">&#8729;</button>@* . *@
+	<button class="calculator-button-operator" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="Calculate">&equals;</button>@* = *@
 </div>
 
 @code {
