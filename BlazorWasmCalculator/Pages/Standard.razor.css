@@ -1,4 +1,5 @@
-﻿.calculator-body {
+﻿/*메인버튼부*/
+.calculator-body {
     height: 450px;
     width: 100%;
     display: grid;
@@ -6,9 +7,27 @@
     row-gap: 0px;
     column-gap: 0px;
     margin: 5px 0px 0px 0px;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-content: end;
     border-radius: 10px;
+    
+}
+
+/*출력창*/
+.calculator-display {
+
+    text-align: right;
+    border-radius: 10px;
+    padding: 10px 20px 0px 0px;
+    margin: 0px 0px 0px 13px;
+    min-height: 150px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: end;
+    line-height: 61px;
+    
 }
 
 .calculator-button-operator, .calculator-button-clear, .calculator-button-number {
@@ -24,8 +43,8 @@
     }
 
 .calculator-button-operator {
-    height: 70px;
-    width: 70px;
+    height: 73px;
+    width: 73px;
     font-size: 2rem;
     font-weight: bolder;
     padding: 0px 0px 0px 0px;
@@ -38,8 +57,8 @@
 }
 
 .calculator-button-clear {
-    height: 70px;
-    width: 70px;
+    height: 73px;
+    width: 73px;
     font-size: 2rem;
     font-weight: bolder;
     padding: 0px 0px 0px 0px;
@@ -52,8 +71,8 @@
 }
 
 .calculator-button-number {
-    height: 70px;
-    width: 70px;
+    height: 73px;
+    width: 73px;
     font-size: 2rem;
     font-weight: bold;
     padding: 0px 0px 0px 0px;
@@ -66,20 +85,6 @@
 }
 
 
-/*출력창*/
-.calculator-display {
-    text-align: right;
-    border-radius: 10px;
-    padding: 10px 20px 0px 0px;
-    margin: 0px 5px 0px 5px;
-    min-height: 150px;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: end;
-    line-height: 61px;
-}
 
 /*경고*/
 .warning {
@@ -139,11 +144,11 @@
 
 @media (max-height: 700px) {
     .calculator-body {
-        height: 400px;
+        height: 380px;
     }
 
     .calculator-display {
-        line-height: 40px;
+        line-height: 30px;
         padding: 10px 20px 0px 0px;
     }
 

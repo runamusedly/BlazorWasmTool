@@ -1,16 +1,9 @@
 .page {
     display: flex;
     flex-direction: column;
+    width: 101%;
+    position: relative;
 }
-
-.main {
-    width: 100%;
-    margin-top: 5px;
-    position: fixed;
-    bottom: 0;
-    z-index: 100;
-}
-
 
 .sidebar {
     /*background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);*/
@@ -21,6 +14,19 @@
     flex-direction: column;
     align-content: flex-end;
 }
+
+.main {
+    position: absolute;
+    width: 100%;
+    margin-top: 5px;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    z-index: 100;
+}
+
+
+
 
 .top-row {
     background-color: #f7f7f7;
