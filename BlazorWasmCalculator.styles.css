@@ -2,16 +2,9 @@
 .page[b-p6myig6dos] {
     display: flex;
     flex-direction: column;
+    width: 101%;
+    position: relative;
 }
-
-.main[b-p6myig6dos] {
-    width: 100%;
-    margin-top: 5px;
-    position: fixed;
-    bottom: 0;
-    z-index: 100;
-}
-
 
 .sidebar[b-p6myig6dos] {
     /*background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);*/
@@ -22,6 +15,19 @@
     flex-direction: column;
     align-content: flex-end;
 }
+
+.main[b-p6myig6dos] {
+    position: absolute;
+    width: 100%;
+    margin-top: 5px;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    z-index: 100;
+}
+
+
+
 
 .top-row[b-p6myig6dos] {
     background-color: #f7f7f7;
@@ -308,6 +314,7 @@ nav[b-961vvh13e1] {
         font-weight: bold;
     }
 /* /Pages/Standard.razor.rz.scp.css */
+/*메인버튼부*/
 .calculator-body[b-e1bkewpdzv] {
     height: 450px;
     width: 100%;
@@ -316,25 +323,44 @@ nav[b-961vvh13e1] {
     row-gap: 0px;
     column-gap: 0px;
     margin: 5px 0px 0px 0px;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-content: end;
     border-radius: 10px;
+    
+}
+
+/*출력창*/
+.calculator-display[b-e1bkewpdzv] {
+
+    text-align: right;
+    border-radius: 10px;
+    padding: 10px 20px 0px 0px;
+    margin: 0px 0px 0px 13px;
+    min-height: 150px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: end;
+    line-height: 61px;
+    
 }
 
 .calculator-button-operator[b-e1bkewpdzv], .calculator-button-clear[b-e1bkewpdzv], .calculator-button-number[b-e1bkewpdzv] {
     user-select: none;
-    box-shadow: 0 3px 4px var(--buttonshadow);
+    box-shadow: 3px 3px 4px var(--buttonshadow), -3px -3px 4px var(--buttonshadow);
     transition: transform 0.1s ease,, box-shadow 0.1s ease;
+    pointer-events: auto;
 }
 
     .calculator-button-operator:active[b-e1bkewpdzv], .calculator-button-clear:active[b-e1bkewpdzv], .calculator-button-number:active[b-e1bkewpdzv] {
-        box-shadow: 0 1px 2px var(--buttonshadow-active);
-        transform: scale(0.95);
+        box-shadow: 1px 1px 2px var(--buttonshadow-active), -1px -1px 2px var(--buttonshadow-active);
+        transform: scale(0.9);
     }
 
 .calculator-button-operator[b-e1bkewpdzv] {
-    height: 70px;
-    width: 70px;
+    height: 73px;
+    width: 73px;
     font-size: 2rem;
     font-weight: bolder;
     padding: 0px 0px 0px 0px;
@@ -347,8 +373,8 @@ nav[b-961vvh13e1] {
 }
 
 .calculator-button-clear[b-e1bkewpdzv] {
-    height: 70px;
-    width: 70px;
+    height: 73px;
+    width: 73px;
     font-size: 2rem;
     font-weight: bolder;
     padding: 0px 0px 0px 0px;
@@ -361,8 +387,8 @@ nav[b-961vvh13e1] {
 }
 
 .calculator-button-number[b-e1bkewpdzv] {
-    height: 70px;
-    width: 70px;
+    height: 73px;
+    width: 73px;
     font-size: 2rem;
     font-weight: bold;
     padding: 0px 0px 0px 0px;
@@ -375,20 +401,6 @@ nav[b-961vvh13e1] {
 }
 
 
-/*출력창*/
-.calculator-display[b-e1bkewpdzv] {
-    text-align: right;
-    border-radius: 10px;
-    padding: 10px 20px 0px 0px;
-    margin: 0px 5px 0px 5px;
-    min-height: 150px;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: end;
-    line-height: 61px;
-}
 
 /*경고*/
 .warning[b-e1bkewpdzv] {
@@ -448,11 +460,11 @@ nav[b-961vvh13e1] {
 
 @media (max-height: 700px) {
     .calculator-body[b-e1bkewpdzv] {
-        height: 400px;
+        height: 380px;
     }
 
     .calculator-display[b-e1bkewpdzv] {
-        line-height: 40px;
+        line-height: 30px;
         padding: 10px 20px 0px 0px;
     }
 

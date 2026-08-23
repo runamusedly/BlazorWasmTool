@@ -1,12 +1,12 @@
 self.assetsManifest = {
-  "version": "uo0/ykE9",
+  "version": "mZWwhirn",
   "assets": [
     {
-      "hash": "sha256-TEzV00xuU0lgX3bQX/ddKaiBZIyRaErCg1qYxKOgh3Y=",
+      "hash": "sha256-dLlY6lNX9d78QJXxb0vi12/OeyVPibv6H8vv9RN31mk=",
       "url": "BlazorWasmCalculator.styles.css"
     },
     {
-      "hash": "sha256-NaVJX1o7ATqtWsPSWeSkR1/PJDCvTbB9axIGVFDV4xM=",
+      "hash": "sha256-xBzy4dBOxX7VqEdu0wDZL6/pcoYG6E8t0/bEmJO0oGo=",
       "url": "_framework/BlazorWasmCalculator.wasm"
     },
     {
@@ -126,7 +126,7 @@ self.assetsManifest = {
       "url": "_framework/System.Text.RegularExpressions.wasm"
     },
     {
-      "hash": "sha256-KmV1G2c8lr5151Uf9TBXaD1+p6beBI04KdcpvmflLjc=",
+      "hash": "sha256-+wUdzrcuAyJl4GiP7rhr0euhJ1b35RxTlOEKfspUYqQ=",
       "url": "_framework/blazor.boot.json"
     },
     {
@@ -166,7 +166,7 @@ self.assetsManifest = {
       "url": "calculator-192.png"
     },
     {
-      "hash": "sha256-6zfCopxX7sj9QlrztsgjX0SqC9iq0BngWOcQMTaoUbc=",
+      "hash": "sha256-KFJm9ULO60Q47arf4qaY794ssuivRYuPx3Qk+K1Re40=",
       "url": "css/app.css"
     },
     {
