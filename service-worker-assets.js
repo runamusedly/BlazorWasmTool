@@ -1,16 +1,16 @@
 self.assetsManifest = {
-  "version": "SvoWm1HA",
+  "version": "/ojLoEcv",
   "assets": [
     {
       "hash": "sha256-dLlY6lNX9d78QJXxb0vi12/OeyVPibv6H8vv9RN31mk=",
       "url": "BlazorWasmCalculator.styles.css"
     },
     {
-      "hash": "sha256-w2/GDgP04z/BLsKcGX/r/4lFRWk2FR4AAZ+bdFt7WH8=",
+      "hash": "sha256-k7QGYxgG3H3xxfntWASCzbeY0RqZ95/7es5vTHb2A3M=",
       "url": "_framework/BlazorWasmCalculator.wasm"
     },
     {
-      "hash": "sha256-27FqC6Y4wgPB2+567YTc+89ATnRHvXGA0ktIqGwEzs0=",
+      "hash": "sha256-3k8wrHMy6EcwcO6Q6YrfijxeiT+ypN2f2msEeL2U9ik=",
       "url": "_framework/Microsoft.AspNetCore.Components.Web.wasm"
     },
     {
@@ -18,7 +18,7 @@ self.assetsManifest = {
       "url": "_framework/Microsoft.AspNetCore.Components.WebAssembly.wasm"
     },
     {
-      "hash": "sha256-TFPJoys3fAkibZyYvOOzQGe6lw2+k+V+/dRioXxwRTc=",
+      "hash": "sha256-TCIl/4a/Zs6fyvv+B16AxW3bkMnb4PjgRMY7sQw2wc4=",
       "url": "_framework/Microsoft.AspNetCore.Components.wasm"
     },
     {
@@ -126,7 +126,7 @@ self.assetsManifest = {
       "url": "_framework/System.Text.RegularExpressions.wasm"
     },
     {
-      "hash": "sha256-qYnJ9jo39LI76QRbguF+M15FhqcC4aX0b9enBi9ChDE=",
+      "hash": "sha256-Dsr8FBlL4YoutL46Vc5QqxhOJPbHxi1jh9jcRZq6QG4=",
       "url": "_framework/blazor.boot.json"
     },
     {
