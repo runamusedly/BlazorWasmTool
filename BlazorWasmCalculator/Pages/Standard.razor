@@ -5,18 +5,19 @@
 
 @*디스플레이창*@
 <div class="calculator-display">
-	@if (Calc.ShowLimitWarning)
+	@if (Calc.IsShowingWarning)
 	{
 		<div class="warning">@Calc.WarningMessage</div>
 	}
 
-	@if (Calc.IsShowingResult)
+	@if (!Calc.IsShowingResult)
 	{
-		<div class="display-result @GetDisplayClass()">@Calc.Result.ToString("#,##0.############")</div>
+		<div class="display-input @GetDisplayClass()">@FormatNumber(Calc.CurrentInput)</div>
+		
 	}
 	else
 	{
-		<div class="display-input @GetDisplayClass()">@FormatNumber(Calc.CurrentInput)</div>
+		<div class="display-result @GetDisplayClass()">@FormatNumber(Calc.CurrentInput)</div> @*결과값의 모양을 특화하기 위함*@
 	}
 
 	<div class="display-process @GetProcessClass()">@Calc.ProcessCalc</div>
@@ -25,33 +26,33 @@
 @*버튼부*@
 <div class="calculator-body">
 	<button class="calculator-button-operator">&percnt;</button>@* % *@
-	<button class="calculator-button-clear" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="Clear">
+	<button class="calculator-button-clear" @onclick="Clear">
 		<span class="material-icons">
 			delete_forever
 		</span>
 	</button>
-	<button class="calculator-button-clear" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="Backspace">
+	<button class="calculator-button-clear" @onclick="Backspace">
 		<span class="material-icons">
 			backspace
 		</span>
 	</button>
-	<button class="calculator-button-operator" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputOpDivide">&divide;</button>@* / *@
-	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum7">&#120829;</button>@* 7 *@
-	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum8">&#120830;</button>@* 8 *@
-	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum9">&#120831;</button>@* 9 *@
-	<button class="calculator-button-operator" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputOpMultiply">&times;</button>@* * *@
-	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum4">&#120826;</button>@* 4 *@
-	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum5">&#120827;</button>@* 5 *@
-	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum6">&#120828;</button>@* 6 *@
-	<button class="calculator-button-operator" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputOpMinus">&minus;</button>@* - *@
-	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum1">&#120823;</button>@* 1 *@
-	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum2">&#120824;</button>@* 2 *@
-	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum3">&#120825;</button>@* 3 *@
-	<button class="calculator-button-operator" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputOpPlus">&plus;</button>@* + *@
-	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum00">&#120822;&#120822;</button>@* 00*@
-	<button class="calculator-button-number" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputNum0">&#120822;</button>@* 0 *@
-	<button class="calculator-button-operator" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="InputDecimal">&#8729;</button>@* . *@
-	<button class="calculator-button-operator" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="Calculate">&equals;</button>@* = *@
+	<button class="calculator-button-operator" @onclick="InputOpDivide">&divide;</button>@* / *@
+	<button class="calculator-button-number" @onclick="InputNum7">&#120829;</button>@* 7 *@
+	<button class="calculator-button-number" @onclick="InputNum8">&#120830;</button>@* 8 *@
+	<button class="calculator-button-number" @onclick="InputNum9">&#120831;</button>@* 9 *@
+	<button class="calculator-button-operator" @onclick="InputOpMultiply">&times;</button>@* * *@
+	<button class="calculator-button-number" @onclick="InputNum4">&#120826;</button>@* 4 *@
+	<button class="calculator-button-number" @onclick="InputNum5">&#120827;</button>@* 5 *@
+	<button class="calculator-button-number" @onclick="InputNum6">&#120828;</button>@* 6 *@
+	<button class="calculator-button-operator" @onclick="InputOpMinus">&minus;</button>@* - *@
+	<button class="calculator-button-number" @onclick="InputNum1">&#120823;</button>@* 1 *@
+	<button class="calculator-button-number" @onclick="InputNum2">&#120824;</button>@* 2 *@
+	<button class="calculator-button-number" @onclick="InputNum3">&#120825;</button>@* 3 *@
+	<button class="calculator-button-operator" @onclick="InputOpPlus">&plus;</button>@* + *@
+	<button class="calculator-button-number" @onclick="InputNum00">&#120822;&#120822;</button>@* 00*@
+	<button class="calculator-button-number" @onclick="InputNum0">&#120822;</button>@* 0 *@
+	<button class="calculator-button-operator" @onclick="InputDecimal">&#8729;</button>@* . *@
+	<button class="calculator-button-operator" @onclick="Calculate">&equals;</button>@* = *@
 </div>
 
 @code {
@@ -63,151 +64,127 @@
 		Layout?.SetTitle(Layout.standard);
 	}
 
-	const int MaxDigits = 12;
-	const string LengthMessage = "입력 가능한 숫자는 12자리입니다.";
+	const int MaxDigits = 15;
+	const string LengthMessage = "입력 가능한 숫자는 15자리입니다.";
 	const string DivideMessage = "0으로 나눌 수 없습니다.";
 
 	//숫자버튼입력
 	void InputNum(string num)
 	{
-		Calc.ShowLimitWarning = false;
-
-		if ((Calc.CurrentInput == "0") && (Calc.ProcessCalc is null))
+		if (Calc.ProcessCalc is null)
 		{
-			Calc.CurrentInput = num;
-			return;
-		}
-
-		if (!(Calc.ProcessCalc is null))
-		{
-			if (Calc.ProcessCalc.Contains("="))
+			if (!(Calc.CurrentInput.Contains(".")))
 			{
-				Calc.CurrentInput = num;
-				Calc.ProcessCalc = null;
-			}
-			else
-			{
-				if (Calc.CurrentInput.Contains("."))
+				if (!(Calc.CurrentInput.Length > (MaxDigits - 1)))
 				{
-					if (Calc.CurrentInput.Length > MaxDigits)
-					{
-						Calc.ShowLimitWarning = true;
-						Calc.WarningMessage = LengthMessage;
-						return;
-					}
-
 					Calc.CurrentInput += num;
 				}
 				else
 				{
-					if (Calc.CurrentInput.Length > (MaxDigits - 1))
-					{
-						Calc.ShowLimitWarning = true;
-						Calc.WarningMessage = LengthMessage;
-						return;
-					}
-
-					if (Calc.CurrentInput == "0")
-					{
-						Calc.CurrentInput = num;
-					}
-					else
-					{
-						Calc.CurrentInput += num;
-					}
+					Calc.IsShowingWarning = true;
+					Calc.WarningMessage = LengthMessage;
+				}
+			}
+			else
+			{
+				if (!(Calc.CurrentInput.Length > MaxDigits))
+				{
+					Calc.CurrentInput += num;
+				}
+				else
+				{
+					Calc.IsShowingWarning = true;
+					Calc.WarningMessage = LengthMessage;
 				}
 			}
 		}
 		else
 		{
-			if (Calc.CurrentInput.Contains("."))
+			if (!(Calc.ProcessCalc.Contains("=")))
 			{
-				if (Calc.CurrentInput.Length > MaxDigits)
+				if (!(Calc.CurrentInput.Contains(".")))
 				{
-					Calc.ShowLimitWarning = true;
-					Calc.WarningMessage = LengthMessage;
-					return;
+					if (!(Calc.CurrentInput.Length > (MaxDigits - 1)))
+					{
+						Calc.CurrentInput += num;
+					}
+					else
+					{
+						Calc.IsShowingWarning = true;
+						Calc.WarningMessage = LengthMessage;
+					}
 				}
-
-				Calc.CurrentInput += num;
+				else
+				{
+					if (!(Calc.CurrentInput.Length > MaxDigits))
+					{
+						Calc.CurrentInput += num;
+					}
+					else
+					{
+						Calc.IsShowingWarning = true;
+						Calc.WarningMessage = LengthMessage;
+					}
+				}
 			}
 			else
 			{
-				if (Calc.CurrentInput.Length > (MaxDigits - 1))
-				{
-					Calc.ShowLimitWarning = true;
-					Calc.WarningMessage = LengthMessage;
-					return;
-				}
-
-				Calc.CurrentInput += num;
 			}
 		}
 	}
 
 	void InputNum00()
 	{
-		Calc.IsShowingResult = false;
 		InputNum("00");
 	}
 
 	void InputNum0()
 	{
-		Calc.IsShowingResult = false;
 		InputNum("0");
 	}
 
 	void InputNum1()
 	{
-		Calc.IsShowingResult = false;
 		InputNum("1");
 	}
 
 	void InputNum2()
 	{
-		Calc.IsShowingResult = false;
 		InputNum("2");
 	}
 
 	void InputNum3()
 	{
-		Calc.IsShowingResult = false;
 		InputNum("3");
 	}
 
 	void InputNum4()
 	{
-		Calc.IsShowingResult = false;
 		InputNum("4");
 	}
 
 	void InputNum5()
 	{
-		Calc.IsShowingResult = false;
 		InputNum("5");
 	}
 
 	void InputNum6()
 	{
-		Calc.IsShowingResult = false;
 		InputNum("6");
 	}
 
 	void InputNum7()
 	{
-		Calc.IsShowingResult = false;
 		InputNum("7");
 	}
 
 	void InputNum8()
 	{
-		Calc.IsShowingResult = false;
 		InputNum("8");
 	}
 
 	void InputNum9()
 	{
-		Calc.IsShowingResult = false;
 		InputNum("9");
 	}
 
@@ -215,27 +192,26 @@
 	//연산자입력
 	void InputOp(string op)
 	{
+		Calc.IsShowingWarning = false;
+
 		if (Calc.ProcessCalc is null)
 		{
-			Calc.ShowLimitWarning = false;
 			Calc.PreviousValue = double.Parse(Calc.CurrentInput);
 			Calc.Operator = op;
 			Calc.ProcessCalc = FormatNumber(Calc.CurrentInput) + " " + op + " ";
-			Calc.CurrentInput = "0";
+			Calc.CurrentInput = "";
 		}
 		else
 		{
 			if (Calc.ProcessCalc.Contains("="))
 			{
-				Calc.ShowLimitWarning = false;
 				Calc.IsShowingResult = false;
 				Calc.Operator = op;
 				Calc.ProcessCalc = Calc.Result.ToString("#,##0.############") + " " + op + " ";
-				Calc.CurrentInput = "0";
+				Calc.CurrentInput = "";
 			}
 			else
 			{
-				Calc.ShowLimitWarning = false;
 				double current = double.Parse(Calc.CurrentInput);
 				string? previousOp = Calc.Operator;
 				if (previousOp is null)
@@ -251,12 +227,12 @@
 					case "-":
 						Calc.PreviousValue = Calc.PreviousValue - current;
 						break;
-					case "\u00F7":
+					case "\u00F7": //Unicode
 						if (current == 0)
 						{
-							Calc.ShowLimitWarning = true;
+							Calc.IsShowingWarning = true;
 							Calc.WarningMessage = DivideMessage;
-							Calc.CurrentInput = "0";
+							Calc.CurrentInput = "";
 							Calc.PreviousValue = 0;
 							Calc.Operator = null;
 							Calc.Result = 0;
@@ -274,7 +250,7 @@
 
 				Calc.Operator = op;
 				Calc.ProcessCalc = Calc.PreviousValue.ToString("#,##0.############") + " " + op + " ";
-				Calc.CurrentInput = "0";
+				Calc.CurrentInput = "";
 			}
 		}
 
@@ -303,24 +279,28 @@
 	//소수점입력
 	void InputDecimal()
 	{
-		if (Calc.CurrentInput.Contains("."))
+		if (!(Calc.CurrentInput.Contains(".")))
 		{
-			return;
-		}
-
-		if (Calc.CurrentInput == "0")
-		{
-			Calc.CurrentInput = "0.";
+			if (Calc.CurrentInput == "")
+			{
+				Calc.CurrentInput = "0.";
+			}
+			else
+			{
+				Calc.CurrentInput += ".";
+			}
 		}
 		else
 		{
-			Calc.CurrentInput += ".";
-		}
+			
+		}	
 	}
 
 	//등호입력
 	void Calculate()
 	{
+		Calc.IsShowingWarning = false;
+
 		if (Calc.ProcessCalc is null)
 		{
 			Calc.IsShowingResult = false;
@@ -335,7 +315,6 @@
 			}
 			else
 			{
-				Calc.ShowLimitWarning = false;
 				Calc.IsShowingResult = true;
 				Calc.ProcessCalc += FormatNumber(Calc.CurrentInput);
 				Calc.ProcessCalc += " =";
@@ -352,10 +331,10 @@
 					case "\u00F7": //Unicode
 						if (current == 0)
 						{
-							Calc.ShowLimitWarning = true;
-							Calc.WarningMessage = DivideMessage;
+							Calc.IsShowingWarning = true;
 							Calc.IsShowingResult = false;
-							Calc.CurrentInput = "0";
+							Calc.WarningMessage = DivideMessage;
+							Calc.CurrentInput = "";
 							Calc.PreviousValue = 0;
 							Calc.Operator = null;
 							Calc.Result = 0;
@@ -381,21 +360,25 @@
 	//전체삭제
 	void Clear()
 	{
+		Calc.IsShowingWarning = false;
 		Calc.IsShowingResult = false;
-		Calc.CurrentInput = "0";
+		Calc.CurrentInput = "";
 		Calc.PreviousValue = 0;
 		Calc.Operator = null;
 		Calc.Result = 0;
 		Calc.ProcessCalc = null;
-		Calc.ShowLimitWarning = false;
+
 	}
 
 	//하나씩 지우기
-	void Backspace()
+	void Backspace() //0.에서 백스페이스를 사용하면 0이 남는다. 이때 03같은 의도치않은 상황이 발생한다
 	{
+		Calc.IsShowingWarning = false;
+		Calc.IsShowingResult = false;
+
 		if (Calc.CurrentInput.Length <= 1)
 		{
-			Calc.CurrentInput = "0";
+			Calc.CurrentInput = "";
 		}
 		else
 		{
@@ -413,7 +396,8 @@
 
 		if (Calc.CurrentInput.Contains("."))
 		{
-			return input;
+			return input; //소수점이 들어간 숫자는 천단위 기호를 삽입할 수 없음
+
 		}
 		else
 		{
