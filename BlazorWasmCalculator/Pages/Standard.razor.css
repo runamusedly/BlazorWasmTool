@@ -27,20 +27,19 @@
     justify-content: start;
     align-items: end;
     line-height: 61px;
-    
 }
 
 .calculator-button-operator, .calculator-button-clear, .calculator-button-number {
     user-select: none;
     box-shadow: 3px 3px 4px var(--buttonshadow), -3px -3px 4px var(--buttonshadow);
-    transition: transform 0.1s ease,, box-shadow 0.1s ease;
+    /*transition: transform 0.1s ease,, box-shadow 0.1s ease;*/
     pointer-events: auto;
 }
 
-    .calculator-button-operator:active, .calculator-button-clear:active, .calculator-button-number:active {
+   /* .calculator-button-operator:active, .calculator-button-clear:active, .calculator-button-number:active {
         box-shadow: 1px 1px 2px var(--buttonshadow-active), -1px -1px 2px var(--buttonshadow-active);
         transform: scale(0.9);
-    }
+    }*/
 
 .calculator-button-operator {
     height: 73px;
