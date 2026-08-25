@@ -432,7 +432,7 @@ textarea[b-e1bkewpdzv] {
 }
 
 .display-small[b-e1bkewpdzv] {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .display-xsmall[b-e1bkewpdzv] {
@@ -464,7 +464,7 @@ textarea[b-e1bkewpdzv] {
 
 .process-small[b-e1bkewpdzv] {
     font-size: 1.3rem;
-    width: 170%;
+   
 }
 
 @media (max-height: 720px) {
@@ -493,7 +493,7 @@ textarea[b-e1bkewpdzv] {
     }
 
     .display-small[b-e1bkewpdzv] {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
     .display-xsmall[b-e1bkewpdzv] {
