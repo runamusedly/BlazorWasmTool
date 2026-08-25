@@ -1,6 +1,6 @@
 ﻿/*메인버튼부*/
 .calculator-body {
-    height: 450px;
+    height: 380px;
     width: 100%;
     display: grid;
     grid-template-columns: auto auto auto auto;
@@ -10,44 +10,43 @@
     justify-content: space-around;
     align-content: end;
     border-radius: 10px;
-    
+    /*background-color: antiquewhite;*/
 }
 
 /*출력창*/
 .calculator-display {
-
-    text-align: right;
     border-radius: 10px;
-    padding: 10px 20px 0px 0px;
+    padding: 10px 10px 0px 0px;
     margin: 0px 0px 0px 13px;
     min-height: 150px;
     width: 90%;
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    align-items: end;
-    line-height: 61px;
+    justify-content: end;
+    align-items: start;
+    line-height: 30px;
+    /*background-color: aliceblue;*/
 }
 
 .calculator-button-operator, .calculator-button-clear, .calculator-button-number {
     user-select: none;
-    box-shadow: 3px 3px 4px var(--buttonshadow), -3px -3px 4px var(--buttonshadow);
-    /*transition: transform 0.1s ease,, box-shadow 0.1s ease;*/
+    box-shadow: 1px 1px 1px var(--buttonshadow), -1px -1px 1px var(--buttonshadow);
+    transition: transform 0.1s ease,, box-shadow 0.1s ease;
     pointer-events: auto;
 }
 
-   /* .calculator-button-operator:active, .calculator-button-clear:active, .calculator-button-number:active {
-        box-shadow: 1px 1px 2px var(--buttonshadow-active), -1px -1px 2px var(--buttonshadow-active);
-        transform: scale(0.9);
-    }*/
+    .calculator-button-operator:active, .calculator-button-clear:active, .calculator-button-number:active {
+        box-shadow: 2px 2px 3px var(--buttonshadow-active), -2px -2px 3px var(--buttonshadow-active);
+        transform: scale(0.98);
+    }
 
 .calculator-button-operator {
-    height: 73px;
-    width: 73px;
+    height: 65px;
+    width: 65px;
     font-size: 2rem;
     font-weight: bolder;
     padding: 0px 0px 0px 0px;
-    margin: 10px 0px 10px 0px;
+    margin: 5px 0px 5px 0px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,12 +55,12 @@
 }
 
 .calculator-button-clear {
-    height: 73px;
-    width: 73px;
+    height: 65px;
+    width: 65px;
     font-size: 2rem;
     font-weight: bolder;
     padding: 0px 0px 0px 0px;
-    margin: 10px 0px 10px 0px;
+    margin: 5px 0px 5px 0px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,12 +69,12 @@
 }
 
 .calculator-button-number {
-    height: 73px;
-    width: 73px;
+    height: 65px;
+    width: 65px;
     font-size: 2rem;
     font-weight: bold;
     padding: 0px 0px 0px 0px;
-    margin: 10px 0px 10px 0px;
+    margin: 5px 0px 5px 0px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,10 +82,19 @@
     border-radius: 30%;
 }
 
+textarea {
+    border: none;
+    resize: none;
+    text-align: right;
+    box-sizing: border-box;
+    background-color: hsl(var(--bg-hue), var(--bg-sat), var(--bg-light));
+}
 
 
 /*경고*/
 .warning {
+    width: 330px;
+    height: 30px;
     font-size: 1rem;
     opacity: 0.7;
     color: var(--warningMessage);
@@ -94,7 +102,11 @@
 
 /*입력*/
 .display-input {
+    width: 330px;
+    height: 47px;
     font-weight: bold;
+    overflow-y: hidden;
+    color: hsl(var(--displayText-hue), var(--displayText-sat), var(--displayText-light));
 }
 
 .display-normal {
@@ -111,26 +123,21 @@
 
 /*계산결과*/
 .display-result {
+    width: 330px;
+    height: 47px;
     font-weight: bold;
+    overflow-y: hidden;
     color: var(--displayResult);
-}
-
-.display-normal {
-    font-size: 2.5rem;
-}
-
-.display-small {
-    font-size: 2rem;
-}
-
-.display-xsmall {
-    font-size: 1.3rem;
 }
 
 /*계산과정*/
 .display-process {
-    margin-top: 20px;
+    width: 330px;
+    min-width: 330px;
+    max-width: 330px;
+    height: 160px;
     opacity: 0.8;
+    color: hsl(var(--displayText-hue), var(--displayText-sat), var(--displayText-light));
 }
 
 .process-normal {
@@ -139,27 +146,23 @@
 
 .process-small {
     font-size: 1.3rem;
+    width: 170%;
 }
 
-@media (max-height: 700px) {
+@media (max-height: 720px) {
     .calculator-body {
-        height: 380px;
+        height: 370px;
     }
 
     .calculator-display {
-        line-height: 30px;
-        padding: 10px 20px 0px 0px;
-    }
-
-    .display-process {
-        margin-top: 5px;
+        line-height: 20px;
+        padding: 10px 10px 0px 0px;
     }
 
     /*경고*/
     .warning {
         font-size: 0.7rem;
         opacity: 0.7;
-        color: var(--warningMessage);
     }
 
     /*입력*/
@@ -182,13 +185,12 @@
     /*계산결과*/
     .display-result {
         font-weight: bold;
-        color: var(--displayResult);
     }
 
     /*계산과정*/
     .display-process {
-        padding-bottom: 20px;
         opacity: 0.8;
+        height: 120px;
     }
 
     .process-normal {

@@ -486,12 +486,3 @@ button {
     background-color: hsl(var(--bg-hue), var(--bg-sat), var(--bg-light));
     color: hsl(var(--displayText-hue), var(--displayText-sat), var(--displayText-light));
 }
-
-/*버튼그림자*/
-/*.calculator-button-operator, .calculator-button-clear, .calculator-button-number {
-    box-shadow: 0 3px 6px var(--buttonshadow);
-}
-
-    .calculator-button-operator:active, .calculator-button-clear:active, .calculator-button-number:active {
-        box-shadow: 0 1px 3px var(--buttonshadow-active);
-    }*/

@@ -7,20 +7,33 @@
 <div class="calculator-display">
 	@if (Calc.IsShowingWarning)
 	{
-		<div class="warning">@Calc.WarningMessage</div>
+		<div>
+			<textarea class="warning" readonly>@Calc.WarningMessage</textarea>
+		</div>
+	}
+	else
+	{
+		<div>
+			<textarea class="warning" readonly></textarea>
+		</div>
 	}
 
 	@if (!Calc.IsShowingResult)
 	{
-		<div class="display-input @GetDisplayClass()">@FormatNumber(Calc.CurrentInput)</div>
-		
+		<div>
+			<textarea class="display-input @GetDisplayClass()" readonly>@FormatNumber(Calc.CurrentInput)</textarea>
+		</div>
+
 	}
 	else
 	{
-		<div class="display-result @GetDisplayClass()">@FormatNumber(Calc.CurrentInput)</div> @*결과값의 모양을 특화하기 위함*@
+		<div>
+			<textarea class="display-result @GetDisplayClass()" readonly>@FormatNumber(Calc.CurrentInput)</textarea> @*결과값의 모양을 특화하기 위함*@
+		</div>
 	}
-
-	<div class="display-process @GetProcessClass()">@Calc.ProcessCalc</div>
+	<div>
+		<textarea class="display-process @GetProcessClass()" readonly>@Calc.ProcessCalc</textarea>
+	</div>
 </div>
 
 @*버튼부*@
@@ -71,6 +84,8 @@
 	//숫자버튼입력
 	void InputNum(string num)
 	{
+		Calc.IsShowingWarning = false;
+
 		if (Calc.ProcessCalc is null)
 		{
 			if (!(Calc.CurrentInput.Contains(".")))
@@ -193,13 +208,23 @@
 	void InputOp(string op)
 	{
 		Calc.IsShowingWarning = false;
+		string s = Calc.CurrentInput;
+		bool success = double.TryParse(s, out double num);
 
 		if (Calc.ProcessCalc is null)
 		{
-			Calc.PreviousValue = double.Parse(Calc.CurrentInput);
-			Calc.Operator = op;
-			Calc.ProcessCalc = FormatNumber(Calc.CurrentInput) + " " + op + " ";
-			Calc.CurrentInput = "";
+			if (success)
+			{
+				Calc.PreviousValue = double.Parse(Calc.CurrentInput);
+				Calc.Operator = op;
+				Calc.ProcessCalc = FormatNumber(Calc.CurrentInput) + " " + op + " ";
+				Calc.CurrentInput = "";
+			}
+			else
+			{
+
+			}
+
 		}
 		else
 		{
@@ -212,45 +237,53 @@
 			}
 			else
 			{
-				double current = double.Parse(Calc.CurrentInput);
-				string? previousOp = Calc.Operator;
-				if (previousOp is null)
+				if (success)
 				{
-					return;
-				}
+					double current = double.Parse(Calc.CurrentInput);
+					string? previousOp = Calc.Operator;
+					if (previousOp is null)
+					{
+						return;
+					}
 
-				switch (previousOp)
+					switch (previousOp)
+					{
+						case "+":
+							Calc.PreviousValue = Calc.PreviousValue + current;
+							break;
+						case "-":
+							Calc.PreviousValue = Calc.PreviousValue - current;
+							break;
+						case "\u00F7": //Unicode
+							if (current == 0)
+							{
+								Calc.IsShowingWarning = true;
+								Calc.WarningMessage = DivideMessage;
+								Calc.CurrentInput = "";
+								Calc.PreviousValue = 0;
+								Calc.Operator = null;
+								Calc.Result = 0;
+								Calc.ProcessCalc = null;
+
+								return;
+							}
+
+							Calc.PreviousValue = Calc.PreviousValue / current;
+							break;
+						case "\u00D7":
+							Calc.PreviousValue = Calc.PreviousValue * current;
+							break;
+					}
+
+					Calc.Operator = op;
+					Calc.ProcessCalc = Calc.ProcessCalc + Calc.CurrentInput + " " + op + " ";
+					Calc.CurrentInput = "";
+				}
+				else
 				{
-					case "+":
-						Calc.PreviousValue = Calc.PreviousValue + current;
-						break;
-					case "-":
-						Calc.PreviousValue = Calc.PreviousValue - current;
-						break;
-					case "\u00F7": //Unicode
-						if (current == 0)
-						{
-							Calc.IsShowingWarning = true;
-							Calc.WarningMessage = DivideMessage;
-							Calc.CurrentInput = "";
-							Calc.PreviousValue = 0;
-							Calc.Operator = null;
-							Calc.Result = 0;
-							Calc.ProcessCalc = null;
-
-							return;
-						}
-
-						Calc.PreviousValue = Calc.PreviousValue / current;
-						break;
-					case "\u00D7":
-						Calc.PreviousValue = Calc.PreviousValue * current;
-						break;
+					
 				}
-
-				Calc.Operator = op;
-				Calc.ProcessCalc = Calc.PreviousValue.ToString("#,##0.############") + " " + op + " ";
-				Calc.CurrentInput = "";
+				
 			}
 		}
 
@@ -292,7 +325,7 @@
 		}
 		else
 		{
-			
+
 		}	
 	}
 
@@ -301,6 +334,7 @@
 	{
 		Calc.IsShowingWarning = false;
 
+
 		if (Calc.ProcessCalc is null)
 		{
 			Calc.IsShowingResult = false;
@@ -308,6 +342,15 @@
 		}
 		else
 		{
+			//string processCalc = Calc.ProcessCalc.TrimEnd();
+			//string s = processCalc;
+			//char c = s[s.Length - 1];
+			//string processCalcEndPart = c.ToString();
+			//bool success = double.TryParse(processCalcEndPart, out double num);
+
+			string s = Calc.CurrentInput;
+			bool success = double.TryParse(s, out double num);
+
 			if (Calc.ProcessCalc.Contains("="))
 			{
 				Calc.IsShowingResult = true;
@@ -315,43 +358,51 @@
 			}
 			else
 			{
-				Calc.IsShowingResult = true;
-				Calc.ProcessCalc += FormatNumber(Calc.CurrentInput);
-				Calc.ProcessCalc += " =";
-				double current = double.Parse(Calc.CurrentInput);
-
-				switch (Calc.Operator)
+				if (success)
 				{
-					case "+":
-						Calc.PreviousValue = Calc.PreviousValue + current;
-						break;
-					case "-":
-						Calc.PreviousValue = Calc.PreviousValue - current;
-						break;
-					case "\u00F7": //Unicode
-						if (current == 0)
-						{
-							Calc.IsShowingWarning = true;
-							Calc.IsShowingResult = false;
-							Calc.WarningMessage = DivideMessage;
-							Calc.CurrentInput = "";
-							Calc.PreviousValue = 0;
-							Calc.Operator = null;
-							Calc.Result = 0;
-							Calc.ProcessCalc = null;
+					Calc.IsShowingResult = true;
+					Calc.ProcessCalc += FormatNumber(Calc.CurrentInput);
+					Calc.ProcessCalc += " =";
+					double current = double.Parse(Calc.CurrentInput);
 
-							return;
-						}
+					switch (Calc.Operator)
+					{
+						case "+":
+							Calc.PreviousValue = Calc.PreviousValue + current;
+							break;
+						case "-":
+							Calc.PreviousValue = Calc.PreviousValue - current;
+							break;
+						case "\u00F7": //Unicode
+							if (current == 0)
+							{
+								Calc.IsShowingWarning = true;
+								Calc.IsShowingResult = false;
+								Calc.WarningMessage = DivideMessage;
+								Calc.CurrentInput = "";
+								Calc.PreviousValue = 0;
+								Calc.Operator = null;
+								Calc.Result = 0;
+								Calc.ProcessCalc = null;
 
-						Calc.PreviousValue = Calc.PreviousValue / current;
-						break;
-					case "\u00D7":
-						Calc.PreviousValue = Calc.PreviousValue * current;
-						break;
+								return;
+							}
+
+							Calc.PreviousValue = Calc.PreviousValue / current;
+							break;
+						case "\u00D7":
+							Calc.PreviousValue = Calc.PreviousValue * current;
+							break;
+					}
+					Calc.Result = Calc.PreviousValue;
+					Calc.CurrentInput = Calc.Result.ToString();
+					Calc.Operator = null;
 				}
-				Calc.Result = Calc.PreviousValue;
-				Calc.CurrentInput = Calc.Result.ToString();
-				Calc.Operator = null;
+				else
+				{
+					
+				}
+				
 			}
 		}
 

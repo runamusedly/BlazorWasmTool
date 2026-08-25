@@ -77,10 +77,12 @@ nav {
     display: none;
 }
 
+/*토글메뉴바*/
 .naviMenu {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    /*background-color: aquamarine;*/
 }
 
     .naviMenu div {
