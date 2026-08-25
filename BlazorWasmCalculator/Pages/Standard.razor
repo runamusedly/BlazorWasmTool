@@ -276,7 +276,7 @@
 					}
 
 					Calc.Operator = op;
-					Calc.ProcessCalc = Calc.ProcessCalc + Calc.CurrentInput + " " + op + " ";
+					Calc.ProcessCalc = Calc.ProcessCalc + FormatNumber(Calc.CurrentInput) + " " + op + " ";
 					Calc.CurrentInput = "";
 				}
 				else
@@ -468,7 +468,7 @@
 	{
 		int len = Calc.CurrentInput.Length;
 
-		if (len <= 13)
+		if (len <= 10)
 		{
 			return "display-normal";
 		}

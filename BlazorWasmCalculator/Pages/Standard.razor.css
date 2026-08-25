@@ -114,7 +114,7 @@ textarea {
 }
 
 .display-small {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .display-xsmall {
@@ -146,7 +146,7 @@ textarea {
 
 .process-small {
     font-size: 1.3rem;
-    width: 170%;
+   
 }
 
 @media (max-height: 720px) {
@@ -175,7 +175,7 @@ textarea {
     }
 
     .display-small {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
     .display-xsmall {
