@@ -281,9 +281,9 @@
 				}
 				else
 				{
-					
+
 				}
-				
+
 			}
 		}
 
@@ -400,9 +400,9 @@
 				}
 				else
 				{
-					
+
 				}
-				
+
 			}
 		}
 
@@ -496,9 +496,13 @@
 			{
 				return "process-normal";
 			}
-			else
+			else if (len <= 30)
 			{
 				return "process-small";
+			}
+			else
+			{
+				return "process-xsmall";
 			}
 		}
 	}
