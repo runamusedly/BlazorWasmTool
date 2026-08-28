@@ -116,8 +116,8 @@
 
 .theme-samsung-dark-bluetech {
     /*배경*/
-    --bg-hue: 210;
-    --bg-sat: 60%;
+    --bg-hue: 253;
+    --bg-sat: 80%;
     --bg-light: 10%;
     /*연산자배경*/
     --opbg-hue: 210;
@@ -164,8 +164,8 @@
     --navMenuActive-sat: 90%;
     --navMenuActive-light: 40%;
     /*버튼shadow*/
-    --buttonshadow: hsl(130, 100%, 23%);
-    --buttonshadow-active: hsl(120, 100%, 70%);
+    --buttonshadow: hsl(64, 100%, 70%);
+    --buttonshadow-active: hsl(64, 100%, 90%);
     /*경고,주의메시지*/
     --warningMessage: hsl(16, 100%, 50%);
     /*계산결과*/

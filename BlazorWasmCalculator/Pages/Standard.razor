@@ -28,7 +28,7 @@
 	else
 	{
 		<div>
-			<textarea class="display-result @GetDisplayClass()" readonly>@FormatNumber(Calc.CurrentInput)</textarea> @*결과값의 모양을 특화하기 위함*@
+			<textarea class="display-result @GetDisplayClass()" readonly>@Calc.Result.ToString("#,##0.###########")</textarea> @*결과값의 모양을 특화하기 위함*@
 		</div>
 	}
 	<div>

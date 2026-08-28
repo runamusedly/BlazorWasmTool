@@ -145,16 +145,16 @@ textarea {
 }
 
 .process-normal {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
 }
 
 .process-small {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
    
 }
 
 .process-xsmall {
-    font-size: 1rem;
+    font-size: 1.3rem;
 }
 
 @media (max-height: 720px) {
@@ -202,14 +202,14 @@ textarea {
     }
 
     .process-normal {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
 
     .process-small {
-        font-size: 1rem;
+        font-size: 1.3rem;
     }
 
     .process-xsmall {
-        font-size: 0.7rem;
+        font-size: 1rem;
     }
 }
